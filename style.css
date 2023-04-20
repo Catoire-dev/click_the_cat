@@ -1,0 +1,44 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1, p {
+    color: whitesmoke;
+}
+
+#main {
+    width: 500px;
+    height: 500px;
+
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item {
+    border: solid;
+}
+
+#sign {
+    color: aliceblue;
+    font-style: italic;
+    align-self: flex-end;
+    margin-right: 1em;
+}
