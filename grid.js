@@ -44,12 +44,26 @@ function    get_cur_green() {
 
 new_green(0);
 
+let         click_counter = 0;
+let         counter_frozen = false;
+
+function    update_counter() {
+    document.getElementById("counter").innerHTML = `Clics : ${click_counter}`;
+}
+
 for (i = 0; items_tab[i]; i++) {
     items_tab[i].addEventListener("click", function() {
         console.log(`Color is : ${this.id}`)
         if (this.style.background === "green") {
             console.log("if");
             document.getElementById("message").innerHTML = get_random_message(m_list_ok);
+            if (counter_frozen) {
+                click_counter = 1;
+                counter_frozen = false;
+            }
+            else
+                click_counter++;
+            update_counter();
             this.style.background = 'bisque';
             this.innerHTML = ""
             new_green(this.id);
@@ -57,6 +71,7 @@ for (i = 0; items_tab[i]; i++) {
         else {
             console.log("else")
             document.getElementById("message").innerHTML = get_random_message(m_list_ko);
+            counter_frozen = true;
             let cur = get_cur_green();
             cur.innerHTML = img_cat_speak;
         }
