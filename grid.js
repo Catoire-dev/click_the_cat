@@ -2,6 +2,7 @@
 
 
 let         items_tab = document.getElementsByClassName("item");
+let         message_el = document.getElementById("message");
 let         m_list_ok = ["Weell Donne ! ~", "Good job !", "Another time?", "Not so hard !"];
 let         m_list_ko = ["Cheh !", "Im not here !", "Come on ! Try again", "Missed."];
 const       img_cat = '<img src="img/cat.png" alt="potichat"></img>'
@@ -25,6 +26,7 @@ function    new_green(cur_id) {
     n_green.style.background = "green";
     // n_green.style.background = img_cat;
     n_green.innerHTML = img_cat;
+    n_green.appendChild(message_el);
 }
 
 function    get_random_message(m_tab) {
@@ -32,7 +34,7 @@ function    get_random_message(m_tab) {
 
     do
         n_mess = m_tab[Math.floor(Math.random() * m_tab.length)];
-    while  (n_mess === document.getElementById("message").innerHTML)
+    while  (n_mess === message_el.innerHTML)
     return n_mess
 }
 
@@ -67,7 +69,7 @@ function    restart_game() {
     click_counter = 0;
     update_counter();
     clear_wrong();
-    document.getElementById("message").innerHTML = "Click me !";
+    message_el.innerHTML = "Click me !";
     document.getElementById("restart-btn").style.display = "none";
     for (let i = 0; items_tab[i]; i++) {
         items_tab[i].style.background = 'bisque';
@@ -85,7 +87,7 @@ for (i = 0; items_tab[i]; i++) {
         console.log(`Color is : ${this.id}`)
         if (this.style.background === "green") {
             console.log("if");
-            document.getElementById("message").innerHTML = get_random_message(m_list_ok);
+            message_el.innerHTML = get_random_message(m_list_ok);
             click_counter++;
             update_counter();
             this.style.background = 'bisque';
@@ -94,10 +96,11 @@ for (i = 0; items_tab[i]; i++) {
         }
         else {
             console.log("else")
-            document.getElementById("message").innerHTML = get_random_message(m_list_ko);
+            message_el.innerHTML = get_random_message(m_list_ko);
             game_over = true;
             let cur = get_cur_green();
             cur.innerHTML = img_cat_speak;
+            cur.appendChild(message_el);
             mark_wrong(cur);
             document.getElementById("restart-btn").style.display = "block";
         }
