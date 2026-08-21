@@ -51,6 +51,17 @@ function    update_counter() {
     document.getElementById("counter").innerHTML = `Clics : ${click_counter}`;
 }
 
+function    clear_wrong() {
+    for (let i = 0; items_tab[i]; i++)
+        items_tab[i].classList.remove("wrong");
+}
+
+function    mark_wrong(cur) {
+    for (let i = 0; items_tab[i]; i++)
+        if (items_tab[i] !== cur)
+            items_tab[i].classList.add("wrong");
+}
+
 for (i = 0; items_tab[i]; i++) {
     items_tab[i].addEventListener("click", function() {
         console.log(`Color is : ${this.id}`)
@@ -64,6 +75,7 @@ for (i = 0; items_tab[i]; i++) {
             else
                 click_counter++;
             update_counter();
+            clear_wrong();
             this.style.background = 'bisque';
             this.innerHTML = ""
             new_green(this.id);
@@ -74,6 +86,7 @@ for (i = 0; items_tab[i]; i++) {
             counter_frozen = true;
             let cur = get_cur_green();
             cur.innerHTML = img_cat_speak;
+            mark_wrong(cur);
         }
     });
     // items_tab[i].addEventListener("mouseover", function() {

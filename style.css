@@ -33,7 +33,27 @@ img {
 }
 
 .item {
+    position: relative;
     border: solid;
+}
+
+.item.wrong::before,
+.item.wrong::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 4px;
+    background: red;
+}
+
+.item.wrong::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.item.wrong::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 #sign {
