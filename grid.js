@@ -102,6 +102,7 @@ function    restart_game() {
     update_counter();
     clear_wrong();
     message_el.innerHTML = "Click me !";
+    message_el.style.display = "block";
     let restart_btn = document.getElementById("restart-btn");
     restart_btn.textContent = "Rejouer";
     restart_btn.style.display = "none";
