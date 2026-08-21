@@ -69,10 +69,11 @@ p {
     top: 6%;
     left: 50%;
     transform: translateX(-50%);
+    width: 90%;
     background: rgba(0, 0, 0, 0.6);
     padding: 0.2em 0.6em;
     border-radius: 4px;
-    white-space: nowrap;
+    text-align: center;
     font-size: 0.8em;
     pointer-events: none;
     z-index: 1;
@@ -116,6 +117,9 @@ img {
 .item {
     position: relative;
     border: solid;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .item.wrong::before,
