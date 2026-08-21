@@ -45,7 +45,7 @@ function    get_cur_green() {
 new_green(0);
 
 let         click_counter = 0;
-let         counter_frozen = false;
+let         game_over = false;
 
 function    update_counter() {
     document.getElementById("counter").innerHTML = `Clics : ${click_counter}`;
@@ -62,20 +62,31 @@ function    mark_wrong(cur) {
             items_tab[i].classList.add("wrong");
 }
 
+function    restart_game() {
+    game_over = false;
+    click_counter = 0;
+    update_counter();
+    clear_wrong();
+    document.getElementById("message").innerHTML = "Click me !";
+    for (let i = 0; items_tab[i]; i++) {
+        items_tab[i].style.background = 'bisque';
+        items_tab[i].innerHTML = "";
+    }
+    new_green(0);
+}
+
+document.getElementById("restart-btn").addEventListener("click", restart_game);
+
 for (i = 0; items_tab[i]; i++) {
     items_tab[i].addEventListener("click", function() {
+        if (game_over)
+            return;
         console.log(`Color is : ${this.id}`)
         if (this.style.background === "green") {
             console.log("if");
             document.getElementById("message").innerHTML = get_random_message(m_list_ok);
-            if (counter_frozen) {
-                click_counter = 1;
-                counter_frozen = false;
-            }
-            else
-                click_counter++;
+            click_counter++;
             update_counter();
-            clear_wrong();
             this.style.background = 'bisque';
             this.innerHTML = ""
             new_green(this.id);
@@ -83,7 +94,7 @@ for (i = 0; items_tab[i]; i++) {
         else {
             console.log("else")
             document.getElementById("message").innerHTML = get_random_message(m_list_ko);
-            counter_frozen = true;
+            game_over = true;
             let cur = get_cur_green();
             cur.innerHTML = img_cat_speak;
             mark_wrong(cur);
