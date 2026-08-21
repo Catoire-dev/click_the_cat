@@ -48,7 +48,7 @@ let         click_counter = 0;
 let         game_over = false;
 
 function    update_counter() {
-    document.getElementById("counter").innerHTML = `Clics : ${click_counter}`;
+    document.getElementById("counter").innerHTML = `Score : ${click_counter}`;
 }
 
 function    clear_wrong() {
@@ -68,6 +68,7 @@ function    restart_game() {
     update_counter();
     clear_wrong();
     document.getElementById("message").innerHTML = "Click me !";
+    document.getElementById("restart-btn").style.display = "none";
     for (let i = 0; items_tab[i]; i++) {
         items_tab[i].style.background = 'bisque';
         items_tab[i].innerHTML = "";
@@ -98,6 +99,7 @@ for (i = 0; items_tab[i]; i++) {
             let cur = get_cur_green();
             cur.innerHTML = img_cat_speak;
             mark_wrong(cur);
+            document.getElementById("restart-btn").style.display = "block";
         }
     });
     // items_tab[i].addEventListener("mouseover", function() {

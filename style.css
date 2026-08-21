@@ -1,9 +1,32 @@
-html, body {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    background: none;
+    border: none;
+}
+
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    margin: 0;
-    padding: 0;
     background-color: black;
 }
 
@@ -12,10 +35,58 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 1.5em;
 }
 
-h1, p {
+h1,
+p {
     color: whitesmoke;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#status-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em;
+}
+
+#message {
+    font-size: 0.8em;
+}
+
+#score-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+#restart-btn {
+    padding: 0.6em 1.4em;
+    border: none;
+    border-radius: 6px;
+    background-color: darkgreen;
+    color: whitesmoke;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+#restart-btn:hover {
+    background-color: green;
 }
 
 #main {
