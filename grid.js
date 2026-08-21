@@ -16,7 +16,7 @@ const       img_cat_speak_hover = '<img src="img/cat-speak-hover.png" alt="potic
 // const       img_cat_speak_hover = '<img src="img/cat-speak-hover.png" alt="potichat"></img>'
 
 function    new_green(cur_id) {
-    let     nb; 
+    let     nb;
     let     n_green;
 
     do
@@ -24,7 +24,7 @@ function    new_green(cur_id) {
     while (nb == 0 || ('i' + nb) == cur_id);
     n_green = document.getElementById('i'+ nb);
     n_green.classList.add("current");
-    n_green.innerHTML = img_cat;
+    n_green.innerHTML = first_click_done ? img_cat_speak : img_cat;
     n_green.classList.remove("cat-appear");
     void n_green.offsetWidth;
     n_green.classList.add("cat-appear");
@@ -48,6 +48,7 @@ function    get_cur_green() {
 
 let         click_counter = 0;
 let         game_over = true;
+let         first_click_done = false;
 let         move_timer = null;
 let         move_delay = 2000;
 let         move_delay_min = 300;
@@ -93,6 +94,7 @@ function    restart_game() {
     let preset = DIFFICULTY_PRESETS[difficulty_el.value];
 
     game_over = false;
+    first_click_done = false;
     click_counter = 0;
     move_delay = preset.start;
     move_delay_min = preset.min;
@@ -126,6 +128,7 @@ for (i = 0; items_tab[i]; i++) {
             update_counter();
             this.classList.remove("current");
             this.innerHTML = ""
+            first_click_done = true;
             new_green(this.id);
             move_delay = Math.max(move_delay_min, move_delay - move_delay_step);
             schedule_move();
@@ -136,7 +139,7 @@ for (i = 0; items_tab[i]; i++) {
             game_over = true;
             clearTimeout(move_timer);
             let cur = get_cur_green();
-            cur.innerHTML = img_cat_speak;
+            cur.innerHTML = img_cat_speak_hover;
             cur.appendChild(message_el);
             mark_wrong(cur);
             document.getElementById("restart-btn").style.display = "block";
